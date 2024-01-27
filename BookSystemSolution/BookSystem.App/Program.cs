@@ -1,4 +1,7 @@
 ﻿using BookSystem.App.Extensions;
+using BookSystem.App.Managers;
+using BookSystem.App.Models.Entities;
+using System.Collections;
 
 namespace BookSystem.App
 {
@@ -6,9 +9,22 @@ namespace BookSystem.App
     {
         static void Main(string[] args)
         {
-            int a = Extension.ReadInt("a: ","Reqem daxil edilmelidir");
+            var bookManager = new Manager<Book>();
+            var authorManager = new Manager<Author>();
 
-            Console.WriteLine(a);
+            bookManager.Add(new Book());
+            bookManager.Add(new Book());
+            bookManager.Add(new Book());
+
+            var bookForRemove = new Book(2);
+
+            bookManager.Remove(bookForRemove);
+
+
+            foreach (var item in bookManager)
+            {
+                Console.WriteLine(item.Id);
+            }
         }
     }
 }

@@ -28,5 +28,26 @@ namespace BookSystem.App.Extensions
 
             return value;
         }
+
+        public static string ReadString(this string caption, string? message = null)
+        {
+            if (string.IsNullOrWhiteSpace(message))
+                message = "Please check value";
+
+            string value;
+
+        l1:
+            Print(caption);
+
+            value = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                PrintLine(message, MessageType.Error);
+                goto l1;
+            }
+
+            return value!;
+        }
     }
 }

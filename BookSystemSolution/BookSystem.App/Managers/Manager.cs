@@ -1,5 +1,7 @@
 ﻿using BookSystem.App.Models.Entities;
 using System.Collections;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace BookSystem.App.Managers
 {
@@ -17,18 +19,36 @@ namespace BookSystem.App.Managers
 
         public void Remove(T entity)
         {
-#warning uncompleted 
             int index = Array.IndexOf(entities, entity);
             if (index <= -1)
                 return;
 
             for (int i = index; i < entities.Length - 1; i++)
             {
-                entities[i]= entities[i + 1];
+                entities[i] = entities[i + 1];
             }
 
-
             Array.Resize(ref entities, entities.Length - 1);
+        }
+
+        public T? Find(Func<T, bool> expression)
+        {
+            return entities.FirstOrDefault(expression);
+        }
+
+        public int Length
+        {
+            get
+            {
+                return entities.Length;
+            }
+        }
+        public T this[int index]
+        {
+            get
+            {
+                return entities[index];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

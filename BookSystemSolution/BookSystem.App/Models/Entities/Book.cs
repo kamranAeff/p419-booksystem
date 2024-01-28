@@ -1,4 +1,5 @@
-﻿using BookSystem.App.Models.Stables;
+﻿using BookSystem.App.Managers;
+using BookSystem.App.Models.Stables;
 
 namespace BookSystem.App.Models.Entities
 {
@@ -26,6 +27,23 @@ namespace BookSystem.App.Models.Entities
         public bool Equals(Book? other)
         {
             return this.Id == other.Id;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Id} {this.Name} {this.PageCount} {this.Price} {this.Genre}";
+        }
+
+        //business logic wrong!!!
+        //public string ToString(Manager<Author> authorManager)
+        //{
+        //    var author = authorManager.Find(m=>m.Id == this.AuthorId);
+        //    return $"{this.Id} {this.Name} {this.PageCount} {this.Price} {this.Genre} {author?.FullName}";
+        //}
+
+        public string ToString(string authorName)
+        {
+            return $"{this.Id} {this.Name} {this.PageCount} {this.Price} {this.Genre} {authorName}";
         }
     }
 }

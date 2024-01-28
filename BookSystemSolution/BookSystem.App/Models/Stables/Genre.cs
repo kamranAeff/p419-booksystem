@@ -1,8 +1,8 @@
 ﻿namespace BookSystem.App.Models.Stables
 {
-    public enum Genre
+    public enum Genre : byte
     {
-        Literary,
+        Literary=1,
         Historical,
         Science,
         Fantasy,
